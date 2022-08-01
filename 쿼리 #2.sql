@@ -1,0 +1,1 @@
+SELECT userID,SUM(amount) FROM buytbl GROUP usebuytblrID;
