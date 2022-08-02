@@ -1,0 +1,1 @@
+SELECT LPAD('seojun',8,'oh'),RPAD('oh',8,'seojun');
