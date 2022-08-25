@@ -33,7 +33,7 @@ import com.spring.pro27.member.vo.*;
 		return memberDAO.deleteMember(id);
 	}
 	@Override
-	public MemberVO login(MemberVO member) {
-		return null;
+	public MemberVO login(MemberVO memberVO)throws Exception {
+		return memberDAO.loginById(memberVO);
 	}
 }

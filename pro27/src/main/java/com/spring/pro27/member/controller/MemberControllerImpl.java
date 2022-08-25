@@ -30,10 +30,21 @@ public class MemberControllerImpl implements MemberController{
 	@Autowired
 	private MemberVO memberVO;
 	
+	@RequestMapping(value= {"/","/main.do"},method = RequestMethod.GET)
+	private ModelAndView main(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	
+	
 	@Override
 	@RequestMapping(value="/member/listMembers.do",method = RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		String viewName = getViewName(request);
+//		String viewName = getViewName(request);
+		String viewName = (String)request.getAttribute("viewName");
 		logger.info("viewName : " + viewName);
 		logger.debug("viewName: " + viewName);
 		List membersList = memberService.listMembers();
@@ -66,7 +77,8 @@ public class MemberControllerImpl implements MemberController{
 	
 	@RequestMapping(value = {"/member/loginForm.do", "/member/memberForm.do" },method =RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		String viewName = getViewName(request);
+//		String viewName = getViewName(request);
+		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
@@ -135,6 +147,5 @@ public class MemberControllerImpl implements MemberController{
 		}
 		return viewName;
 	}
-	
 
 }
